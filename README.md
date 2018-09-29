@@ -13,6 +13,22 @@ Tools for MIKE observing runs
 * prep SMHR quick analysis scripts
 * prep google doc for exptime estimate
 
+## Slits and binning
+The default setting is 0.7x5.00, 2x2 binning, and slow readout.
+If you go to smaller slits, you will want to decrease the binning.
+
+* 1.0 x 5.00 -> 2x2 binning 
+* 0.7 x 5.00 -> 2x2 binning 
+* 0.5 x 5.00 -> 2x1 binning 
+* 0.35x 5.00 -> 1x1 binning (I have done 2x2 and 2x1 but this underresolves the image..)
+
+The CCD scale is 8.2 pix/arcsec on the blue (0.12 arcsec/pix), 7.5 pix/arcsec on the red (0.13 arcsec/pix).
+You need >2 pixels per resolution element to be Nyquist sampled.
+
+The focus is checked in the afternoon by the instrument scientist by taking arcs with two 0.35 boxes and measuriing the PSFs.
+It is not recommended to do any focusing yourself.
+On my last run, the FWHM was about 2.5 pixels, or ~0.3 arcseconds.
+
 ## Calibrations
 * Quartz flats (for slit distortion tracing)
 * Milky flats (for flat fielding)
@@ -49,13 +65,15 @@ I usually number each night starting 1000 for the first night, 2000 for the seco
 * imexam (gives "l" and "c" for line and column cuts)
   * `l` = line cut (across), `c` = column cut (vertical)
   * `limexam` and `cimexam` let you set limits on the plot (useful for long exposures)
-  * Many other things: 
+  * Many other things: `v` = vector cut, `r` or `.` = radial profile 
   * http://stsdas.stsci.edu/cgi-bin/gethelp.cgi?imexamine
 
 ## Observing
 * Experience shows that for abundances, you only need to take arcs at the beginning, middle, and end of night (good to about 1-2 km/s). For more precise RVs you will probably want an adjacent arc.
-* I usually take an arc whenever I see the outside temperature changing a lot (by ~0.5 deg)
+* I usually take an arc whenever I see the outside temperature changing a lot (by ~0.5 deg), since this tends to be when it shifts.
 * Arcs can be taken while slewing (unless you really want super precise RVs, I guess).
+* MIKE does not have a rotator. Good for stability, bad for atmospheric dispersion. Because guiding is only done in R band, at airmass > 1.5 if you care about blue light you will want to move the star a bit in the slit. Ian Thompson says he "guides low", i.e. move the star down in the slit viewer. However I have not had a chance to verify that this is the right direction. Note that the blue and red object locations are flipped on the CCDs (right on blue = left on red).
+  * TODO check 
 
 ## To-do list
 - [ ] Add RV standards catalogs
