@@ -58,8 +58,8 @@ I usually number each night starting 1000 for the first night, 2000 for the seco
 * Arcs can be taken while slewing (unless you really want super precise RVs, I guess).
 
 ## To-do list
-- [] Add RV standards catalogs
-- [] Add hot blue stars catalog?
-- [] Add code to turn lists of objects/coordinates into a MIKE observing catalog
-- [] Add something for finding charts
-- [] Add something for observation planning
+- [ ] Add RV standards catalogs
+- [ ] Add hot blue stars catalog?
+- [ ] Add code to turn lists of objects/coordinates into a MIKE observing catalog
+- [ ] Add something for finding charts
+- [ ] Add something for observation planning
