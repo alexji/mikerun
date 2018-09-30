@@ -57,6 +57,20 @@ I usually number each night starting 1000 for the first night, 2000 for the seco
   * Optional: for red side, take dome flats and do -fringekey fringe
 * run summary plot (code) on reduced data (Anaconda)
 
+Set up (at least) four terminal windows.
+(1) Copying, mikedb (carpy)
+(2) Anaconda for split_db 
+(3) blue folder reduction (carpy)
+(4) red folder reduction (carpy)
+
+### Procedure during the night:
+* Copy data to raw_data
+* Run mikedb -d raw_data (terminal 1)
+* Run python split_db.py (terminal 2)
+* If redoing target, remove targ_obj<red/blue> and obj<red/blue>/ directory (terminal 3/4)
+* make regenerate (and/or mikesetup -db <blue/red>MIKE.db -<red/blue> -all) (terminal 3/4)
+* make all (or make targ_obj<red/blue>)
+
 ## Guanaco computer/MIKE GUI instructions
 * In the MIKE GUI, set the observer and check the DataPath
 * "mike" opens MIKE GUI, if it's not open, also opens overview for MIKE-blue and red
@@ -81,3 +95,5 @@ I usually number each night starting 1000 for the first night, 2000 for the seco
 - [ ] Add code to turn lists of objects/coordinates into a MIKE observing catalog
 - [ ] Add something for finding charts
 - [ ] Add something for observation planning
+- [ ] Add autosummary script
+- [ ] Add exposure time calculator
