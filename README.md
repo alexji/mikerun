@@ -44,6 +44,10 @@ Instead I just take a ton of afternoon milky flats.
 However for the very bluest orders (if you're pushing down to 3300-3500A), you will want these because you'll need like 100+ milky flats.
 You can estimate the flat S/N by sqrt(total counts) and see if it is "infinite" for your needs.
 
+Typical exposure times (TODO). Nonlinearity sets in around 50k counts, so the goal is to have a peak of ~40k.
+(TODO more detail/checks) for 0.35" slit, a 10s arc seems needed to get enough counts for a good wavelength calibration (sometimes the reduction pipeline fails).
+However, I think only the first afternoon one needs to be taken like this to get an initial identification, and subsequent arcs could be shorter (5s). I have just started taking 5s arcs for everything, except maybe 3s for 1.0 slit.
+
 ## Numbering
 I usually number each night starting 1000 for the first night, 2000 for the second night, etc.
 (For initial calibrations, e.g. milky's, I usually start numbering at 0000)
