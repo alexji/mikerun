@@ -101,3 +101,6 @@ Set up (at least) four terminal windows.
 - [ ] Add something for observation planning
 - [ ] Add autosummary script
 - [ ] Add exposure time calculator
+
+## Instrument Notes
+* 3-7-2019: since my last run in Nov 2018, they moved the quartz lamp to be a bit further away. I find calibration times need about 3-4x more exposure to achieve similar counts.
