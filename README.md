@@ -68,7 +68,7 @@ Set up (at least) four terminal windows.
 (4) red folder reduction (carpy)
 
 ### Procedure during the night:
-* Copy data to raw_data
+* Copy data to raw_data (e.g. `rsync --progress --azvhr user@computer:/path/to/your/data/directory/ .`)
 * Run mikedb -d raw_data (terminal 1)
 * Run python split_db.py (terminal 2)
 * If redoing target, remove targ_obj<red/blue> and obj<red/blue>/ directory (terminal 3/4)
@@ -85,11 +85,15 @@ Set up (at least) four terminal windows.
   * `limexam` and `cimexam` let you set limits on the plot (useful for long exposures)
   * Many other things: `v` = vector cut, `r` or `.` = radial profile 
   * http://stsdas.stsci.edu/cgi-bin/gethelp.cgi?imexamine
+* Editing fields in the MIKE GUI requires you to put the mouse in the edit field, type in the changes, and press enter
 
 ## Observing
-* Experience shows that for abundances, you only need to take arcs at the beginning, middle, and end of night (good to about 1-2 km/s). For more precise RVs you will probably want an adjacent arc.
-* I usually take an arc whenever I see the outside temperature changing a lot (by ~0.5 deg), since this tends to be when it shifts.
-* Arcs can be taken while slewing (unless you really want super precise RVs, I guess).
+* Experience shows that for abundances, you only need to take arcs at the beginning, middle, and end of night (good to about 1-2 km/s). For more precise RVs you will want an adjacent arc.
+* You can edit the exposure time on the fly. The best way to stop and read out an exposure is to change the exposure time 
+* I would not change readout settings during an exposure, just set it correctly before you begin exposing. But if you make a mistake, you can change it as long as it's not in the 10-30 seconds before the exposure finishes and reads out. I have been burned by changing it too late.
+* I usually take an arc whenever I see the temperature changing a lot (by ~0.5 deg), since this tends to be when it shifts.
+* Arcs can be taken while slewing (unless you want super precise RVs).
+* It's a good idea to take an arc whenever you change the slit, as in principle the slit position could change slightly. But in practice, I haven't noticed a difference (at the 1-2 km/s level).
 * MIKE does not have a rotator. Good for stability, bad for atmospheric dispersion. Because guiding is only done in R band, at airmass > 1.5 if you care about blue light you will want to move the star a bit in the slit. Ian Thompson says he "guides low", i.e. move the star down in the slit viewer.
 You can and should check this (can do in twilight with a bright star; you can see where the slit is from the sky background), but moving an object down on the slit viewer makes the object trace move right on the blue CCD (as viewed on the MIKE GUI).
 Note also that the blue and red object locations are flipped on the CCDs (right on blue = left on red).
