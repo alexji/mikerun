@@ -90,11 +90,13 @@ Set up (at least) four terminal windows.
 * Experience shows that for abundances, you only need to take arcs at the beginning, middle, and end of night (good to about 1-2 km/s). For more precise RVs you will probably want an adjacent arc.
 * I usually take an arc whenever I see the outside temperature changing a lot (by ~0.5 deg), since this tends to be when it shifts.
 * Arcs can be taken while slewing (unless you really want super precise RVs, I guess).
-* MIKE does not have a rotator. Good for stability, bad for atmospheric dispersion. Because guiding is only done in R band, at airmass > 1.5 if you care about blue light you will want to move the star a bit in the slit. Ian Thompson says he "guides low", i.e. move the star down in the slit viewer. However I have not had a chance to verify that this is the right direction. Note that the blue and red object locations are flipped on the CCDs (right on blue = left on red).
-  * TODO check 
+* MIKE does not have a rotator. Good for stability, bad for atmospheric dispersion. Because guiding is only done in R band, at airmass > 1.5 if you care about blue light you will want to move the star a bit in the slit. Ian Thompson says he "guides low", i.e. move the star down in the slit viewer.
+You can and should check this (can do in twilight with a bright star; you can see where the slit is from the sky background), but moving an object down on the slit viewer makes the object trace move right on the blue CCD (as viewed on the MIKE GUI).
+Note also that the blue and red object locations are flipped on the CCDs (right on blue = left on red).
+Do this only by about 10-20% of the slit length, or reductions can get painful.
 
 ## To-do list
-- [ ] Add RV standards catalogs
+- [ ] Add RV standards catalogs/scripts
 - [ ] Add hot blue stars catalog?
 - [ ] Add code to turn lists of objects/coordinates into a MIKE observing catalog
 - [ ] Add something for finding charts
