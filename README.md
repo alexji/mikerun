@@ -110,6 +110,7 @@ Do this only by about 10-20% of the slit length, or reductions can get painful.
 
 ## Instrument Notes
 * 3-7-2019: since my last run in Nov 2018, they moved the quartz lamp to be a bit further away. I find calibration times need about 3-4x more exposure to achieve similar counts. The ThAr should not be affected.
+* 6-13-2019: the lamp apparently has been moved back, since we needed much shorter exposure times this run.
 
 # Reduction Notes
 Make sure to inspect the wavelength calibration output.
