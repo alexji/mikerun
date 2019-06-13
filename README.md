@@ -110,3 +110,25 @@ Do this only by about 10-20% of the slit length, or reductions can get painful.
 
 ## Instrument Notes
 * 3-7-2019: since my last run in Nov 2018, they moved the quartz lamp to be a bit further away. I find calibration times need about 3-4x more exposure to achieve similar counts. The ThAr should not be affected.
+
+# Reduction Notes
+Make sure to inspect the wavelength calibration output.
+For instance, look at `lampblue/lampblue_lampXXXXfbspecshisto.ps`.
+If the residuals have obvious trends, this means the wavelength calibration is off.
+It is reasonably common for the blue side calibration to be off by a few tenths of angstroms at order edges.
+You can also look order-by-order in `lampblue/lampblue_lampXXXXfbspecsmatch.ps`, which shows which lines are being iteratively rejected in the wavelength solution.
+
+To fix the wavelength calibration, go to `lampblue/Makefile` and look for these things:
+```
+stage-wdist: stage-xdist-copy
+...
+mikeMatchOrders lampblue_lamp1002fb.fits
+mikeFindLines lampblue_lampXXXXfbspecs.fits -fwhm 2.500000 -th 10.000000
+mikeMatchLamps lampblue_lampXXXXfbspecs.fits -x 5 -o 4 -maxsh 300
+```
+If the error message says that you are not finding enough lines, you can adjust `-fwhm` (minimum line FWHM) or `-th` (detection threshold) in `mikeFindLines`.
+If the solution is a bad fit, you can change `-x` or `-o` for `mikeMatchLamps` to change the degree of the polynomial fit in the X direction (`-x`) or in the Y direction (`-o` for order, I think).
+I think that Carpy uses all lines in all orders to determine an overall distortion, which helps give pretty good wavelength solutions even in orders without that many arc lines. However, this can also lead to bad fits.
+
+It is fairly common for Carpy to die during wavelength calibration. A common failure mode is when the wavelength solution is bad, so bad that it becomes non-monotonic. There will be an unhelpful error message related to `splrep` when that happens, because fitting splines requires the input wavelengths to be monotonic. If this happens, it means your wavelength calibration is bad.
+We have also found in practice that the exact failures can change depending on what version of Carpy you are using (I use an old version on my laptop that I installed in 2015 and don't want to touch because it just works, but right now I do all my final reductions on the Carnegie computers to take advantage of Dan Kelson's latest but non-version-controlled improvements).
