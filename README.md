@@ -19,7 +19,7 @@ If you go to smaller slits, you will want to decrease the binning.
 
 * 1.0 x 5.00 -> 2x2 binning 
 * 0.7 x 5.00 -> 2x2 binning 
-* 0.5 x 5.00 -> 2x1 binning 
+* 0.5 x 5.00 -> 2x1 binning or 1x1 binning
 * 0.35x 5.00 -> 1x1 binning (I have done 2x2 and 2x1 but this underresolves the image..)
 
 The CCD scale is 8.2 pix/arcsec on the blue (0.12 arcsec/pix), 7.5 pix/arcsec on the red (0.13 arcsec/pix).
@@ -28,6 +28,16 @@ You need >2 pixels per resolution element to be Nyquist sampled.
 The focus is checked in the afternoon by the instrument scientist by taking arcs with two 0.35 boxes and measuriing the PSFs.
 It is not recommended to do any focusing yourself.
 On my last run, the FWHM was about 2.5 pixels, or ~0.3 arcseconds.
+
+### Readout mode
+I almost always do slow readout because I do faint objects.
+
+However if you are doing bright objects, doing fast readout should be okay because you won't be read-noise dominated. This is probably always the case for data you want to take with 0.50 or 0.35 slits.
+(The actual per-pixel read noise is about the same, 3-4 electrons per pixel, but I believe in 2x2 binning the effective read noise goes down by 4x because you only do one read per 4 real pixels.)
+
+IMPORTANT, note that the blue side gain changes by a factor of 2, so your counts will change by 2x! The gain is about 0.5 e-/count for slow readout, but 1 e-/count for fast readout. (Carpy accounts for this during reductions as part of the pixel flat.) The red side gain is about the same, 1 e-/count for both readout modes.
+The nonlinear limit is also a bit lower for fast readout, so you want to stay below 40k counts instead of 50k counts (see the plots next to the computer in the control room).
+And of course, make sure that your calibrations match your observations.
 
 ## Calibrations
 * Quartz flats (for slit distortion tracing)
