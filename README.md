@@ -58,6 +58,9 @@ Typical exposure times (TODO). Nonlinearity sets in around 50k counts, so the go
 (TODO more detail/checks) for 0.35" slit, a 10s arc seems needed to get enough counts for a good wavelength calibration (sometimes the reduction pipeline fails).
 However, I think only the first afternoon one needs to be taken like this to get an initial identification, and subsequent arcs could be shorter (5s). I have just started taking 5s arcs for everything, except maybe 3s for 1.0 slit.
 
+NOTE: keep the dome lights off (or at least constant) when you take the milky flats.
+Alex screwed this up once and got milkys with too much intrinsic noise.
+
 ## Numbering
 I usually number each night starting 1000 for the first night, 2000 for the second night, etc.
 (For initial calibrations, e.g. milky's, I usually start numbering at 0000)
