@@ -48,6 +48,7 @@ And of course, make sure that your calibrations match your observations.
 * Recommended to take at least one RV standard
 
 I usually take 20 quartz, 20 milkys the first afternoon, then 5-10 each afternoon after that.
+UPDATE: I now usually take 5 quartz each night, given some reduction problems when the temperature changed a lot over a multi-night run. Would be a good idea to take some milky's each night too.
 
 It is recommended in the manual to take milky flats with hot blue stars in twilight, but I do not do this.
 Instead I just take a ton of afternoon milky flats.
@@ -58,8 +59,23 @@ Typical exposure times (TODO). Nonlinearity sets in around 50k counts, so the go
 (TODO more detail/checks) for 0.35" slit, a 10s arc seems needed to get enough counts for a good wavelength calibration (sometimes the reduction pipeline fails).
 However, I think only the first afternoon one needs to be taken like this to get an initial identification, and subsequent arcs could be shorter (5s). I have just started taking 5s arcs for everything, except maybe 3s for 1.0 slit.
 
+### Calibration exposure time estimates
+Aim for 40k counts at peak in both blue and red. Make sure to check the exposure counts.
+
+| Slit| Bin | Read | Quartz B/R | Milky B/R | Fringe |
+| --- | --- | ---- | ---------- | --------- | ------ |
+| 0.7 | 2x2 | Slow | 3.5/1.5    | 12/10     | 40     |
+| 1.0 | 2x2 | Slow | 8/7        | 12/10     | 40     |
+| 0.5 | 2x1 | Slow | 10/5       | 38/35     | 100    |
+| 0.5 | 1x1 | Fast | 30/5       | 90/60     | 120?   |
+| 0.35| 2x1 | Slow | 14/8       | 50/45     | 150    |
+
+3-5sec ThArs are good.
+
+The fringe frames are taken without the diffuser. Put in the screen, turn on both the Qh and Ql lamps, and turn the internal dome lamp to 2.7V.
+
 NOTE: keep the dome lights off (or at least constant) when you take the milky flats.
-Alex screwed this up once and got milkys with too much intrinsic noise.
+Alex screwed this up once showing people the mirror and got milkys with too much intrinsic noise.
 
 ## Numbering
 I usually number each night starting 1000 for the first night, 2000 for the second night, etc.
