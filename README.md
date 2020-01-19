@@ -141,7 +141,29 @@ Do this only by about 10-20% of the slit length, or reductions can get painful.
 * 3-7-2019: since my last run in Nov 2018, they moved the quartz lamp to be a bit further away. I find calibration times need about 3-4x more exposure to achieve similar counts. The ThAr should not be affected.
 * 6-13-2019: the lamp apparently has been moved back, since we needed much shorter exposure times this run.
 
-# Reduction Notes
+# Reduction Instructions
+- Put all your raw data in one directory. I will call it `raw_data` in these instructions, but replace it however you want.
+- Enter the CarPy environment (e.g. `source /usr/local/CarPy/Setup.bash`)
+- Run `mikedb -d raw_data`. This will create a file `raw_dataMIKE.db`
+- Open `raw_dataMIKE.db` and make any manual modifications needed.
+  - If any frames were bad and/or test frames, you can delete them in this file and they will be ignored
+  - CarPy uses the object names to identify calibration frames
+    - Anything with `thar` in the object name is assumed to be an arc.
+    - Anything with `milky` in the object name is assumed to be a milky flat.
+    - Anything with `quartz` in the object name is assumed to be a quartz flat.
+  - If two frames have the same object name, CarPy will reduce the frames _together_ into one file. See [this paper](https://code.obs.carnegiescience.edu/Algorithms/ghlb/view) for details (or talk to Alex, it's a complicated paper). You can reduce frames individually by editing the `raw_dataMIKE.db` file so that each frame has a different name (i.e. `hd122563-1` and `hd122563-2`)
+  - All the frames will be assumed to have the same slit and chip binning. If that's not the case, pick the files from one slit and delete the rest.
+    - It is generally advised to make subdirectories for each setting
+    - The script `split_db.py` here was made to do that automatically, you can play around with it or write your own.
+    - It is generally advised to reduce the blue and red chips in separate directories, although you don't have to. You can separate that manually, or use `split_db.py`
+- Run `mikesetup -db raw_dataMIKE.db -blue -all` and `mikesetup -db raw_dataMIKE.db -red -all`
+  - This command creates a bunch of directories, symbolic links, and Makefiles.
+  - As mentioned above, I usually make two `.db` files in two different directories
+  - If you have fringe flats, make sure that the object name has `fringe` and add `-fringekey fringe`.
+    - Some older versions of CarPy do not have the correct implementation of fringe flats. If your reduced data look weird, just skip the fringe flats and contact Dan Kelson later for an up-to-date version
+- Run `make all` and things should work!
+
+## Reduction Notes
 Make sure to inspect the wavelength calibration output.
 For instance, look at `lampblue/lampblue_lampXXXXfbspecshisto.ps`.
 If the residuals have obvious trends, this means the wavelength calibration is off.
@@ -162,3 +184,5 @@ I think that Carpy uses all lines in all orders to determine an overall distorti
 
 It is fairly common for Carpy to die during wavelength calibration. A common failure mode is when the wavelength solution is bad, so bad that it becomes non-monotonic. There will be an unhelpful error message related to `splrep` when that happens, because fitting splines requires the input wavelengths to be monotonic. If this happens, it means your wavelength calibration is bad.
 We have also found in practice that the exact failures can change depending on what version of Carpy you are using (I use an old version on my laptop that I installed in 2015 and don't want to touch because it just works, but right now I do all my final reductions on the Carnegie computers to take advantage of Dan Kelson's latest but non-version-controlled improvements).
+
+Also note that there were upgrades made to the wavelength calibration happening in about 2017 or 2018. This helped remove a lot of the previous crashes with slits that are not 0.7 arcsec, plus it was more accurate overall. I believe the most recent CarPy version on the website has the 
