@@ -143,6 +143,7 @@ Do this only by about 10-20% of the slit length, or reductions can get painful.
 
 # Reduction Instructions
 - Put all your raw data in one directory. I will call it `raw_data` in these instructions, but replace it however you want.
+  - CarPy searches for every file in `raw_data/*.fits`. Subdirectories of `raw_data` will be ignored.
 - Enter the CarPy environment (e.g. `source /usr/local/CarPy/Setup.bash`)
 - Run `mikedb -d raw_data`. This will create a file `raw_dataMIKE.db`
 - Open `raw_dataMIKE.db` and make any manual modifications needed.
