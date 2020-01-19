@@ -163,7 +163,10 @@ Do this only by about 10-20% of the slit length, or reductions can get painful.
     - Some older versions of CarPy do not have the correct implementation of fringe flats. If your reduced data look weird, just skip the fringe flats and contact Dan Kelson later for an up-to-date version
 - Run `make all` and things should work!
 
-## Reduction Notes
+## How it works
+I will describe the stages of the reduction here in the future. In the meantime, you can see all the stages of the reduction by looking at the Makefile that is created by `mikesetup`.
+
+## Advanced reduction Notes
 Make sure to inspect the wavelength calibration output.
 For instance, look at `lampblue/lampblue_lampXXXXfbspecshisto.ps`.
 If the residuals have obvious trends, this means the wavelength calibration is off.
