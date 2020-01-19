@@ -147,12 +147,13 @@ Do this only by about 10-20% of the slit length, or reductions can get painful.
 - Enter the CarPy environment (e.g. `source /usr/local/CarPy/Setup.bash`)
 - Run `mikedb -d raw_data`. This will create a file `raw_dataMIKE.db`
 - Open `raw_dataMIKE.db` and make any manual modifications needed.
+  - Any changes you make have to be done for both the blue and red files in `raw_dataMIKE.db` (I often do just the blue ones at the top of this file, then forget to do the red ones)
   - If any frames were bad and/or test frames, you can delete them in this file and they will be ignored
   - CarPy uses the object names to identify calibration frames
     - Anything with `thar` in the object name is assumed to be an arc.
     - Anything with `milky` in the object name is assumed to be a milky flat.
     - Anything with `quartz` in the object name is assumed to be a quartz flat.
-  - If two frames have the same object name, CarPy will reduce the frames _together_ into one file. See [this paper](https://code.obs.carnegiescience.edu/Algorithms/ghlb/view) for details (or talk to Alex, it's a complicated paper). You can reduce frames individually by editing the `raw_dataMIKE.db` file so that each frame has a different name (i.e. `hd122563-1` and `hd122563-2`)
+  - If two or more frames have the same object name, CarPy will reduce the frames _together_ into one file. See [this paper](https://code.obs.carnegiescience.edu/Algorithms/ghlb/view) for details (or talk to Alex, it's a complicated paper). You can reduce frames individually by editing the `raw_dataMIKE.db` file so that each frame has a different name (e.g. for object `my-RRL`, where the velocities change between individual exposures, I would rename them `my-RRL-1` and `my-RRL-2`).
   - All the frames will be assumed to have the same slit and chip binning. If that's not the case, pick the files from one slit and delete the rest.
     - It is generally advised to make subdirectories for each setting
     - The script `split_db.py` here was made to do that automatically, you can play around with it or write your own.
