@@ -160,7 +160,7 @@ Do this only by about 10-20% of the slit length, or reductions can get painful.
     - It is generally advised to reduce the blue and red chips in separate directories, although you don't have to. You can separate that manually, or use `split_db.py`
 - Run `mikesetup -db raw_dataMIKE.db -blue -all` and `mikesetup -db raw_dataMIKE.db -red -all`
   - This command creates a bunch of directories, symbolic links, and Makefiles.
-  - As mentioned above, I usually make two `.db` files in two different directories
+  - As mentioned above, I usually make two `.db` files in two different directories, one for each chip. If you do that, `cd` into the relevant directory before you call `mikesetup`.
   - If you have fringe flats, make sure that the object name has `fringe` and add `-fringekey fringe`.
     - Some older versions of CarPy do not have the correct implementation of fringe flats. If your reduced data look weird, just skip the fringe flats and contact Dan Kelson later for an up-to-date version
 - Run `make all` and things should work!
