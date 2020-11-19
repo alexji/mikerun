@@ -73,6 +73,10 @@ Aim for 40k counts at peak in both blue and red. Make sure to check the exposure
 3-5sec ThArs are good.
 
 The fringe frames are taken without the diffuser. Put in the screen, turn on both the Qh and Ql lamps, and turn the internal dome lamp to 2.7V.
+NOTE from Josh:
+"Dave Osip says that if the variable lamp is only at 2.7V, then what it's
+adding to the flux of the Qh lamp is pretty minimal (and the same goes for
+Ql)."
 
 NOTE: keep the dome lights off (or at least constant) when you take the milky flats.
 Alex screwed this up once showing people the mirror and got milkys with too much intrinsic noise.
@@ -142,6 +146,14 @@ Do this only by about 10-20% of the slit length, or reductions can get painful.
 * 6-13-2019: the lamp apparently has been moved back, since we needed much shorter exposure times this run.
 
 # Reduction Instructions
+
+Note: I recommend using this "new" version of CarPy that resolves many bugs:
+- Go to ftp://ftp.obs.carnegiescience.edu/pub/kelson 
+- Get `dist20190610.tgz`
+- In your CarPy directory (e.g. `/usr/local/CarPy/`), make a backup of the `dist` folder
+- Unzip the file into the CarPy Directory, it should make a new `dist folder
+
+How to reduce data:
 - Put all your raw data in one directory. I will call it `raw_data` in these instructions, but replace it however you want.
   - CarPy searches for every file in `raw_data/*.fits`. Subdirectories of `raw_data` will be ignored.
 - Enter the CarPy environment (e.g. `source /usr/local/CarPy/Setup.bash`)
