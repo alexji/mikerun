@@ -197,9 +197,13 @@ mikeMatchLamps lampblue_lampXXXXfbspecs.fits -x 5 -o 4 -maxsh 300
 ```
 If the error message says that you are not finding enough lines, you can adjust `-fwhm` (minimum line FWHM) or `-th` (detection threshold) in `mikeFindLines`.
 If the solution is a bad fit, you can change `-x` or `-o` for `mikeMatchLamps` to change the degree of the polynomial fit in the X direction (`-x`) or in the Y direction (`-o` for order, I think).
-I think that Carpy uses all lines in all orders to determine an overall distortion, which helps give pretty good wavelength solutions even in orders without that many arc lines. However, this can also lead to bad fits.
+I think that Carpy uses all lines in all orders to determine an overall distortion, which helps give pretty good wavelength solutions even in orders without that many arc lines. However, this can also lead to bad fits so you HAVE to inspect if you are changing these things around.
 
 It is fairly common for Carpy to die during wavelength calibration. A common failure mode is when the wavelength solution is bad, so bad that it becomes non-monotonic. There will be an unhelpful error message related to `splrep` when that happens, because fitting splines requires the input wavelengths to be monotonic. If this happens, it means your wavelength calibration is bad.
 We have also found in practice that the exact failures can change depending on what version of Carpy you are using (I use an old version on my laptop that I installed in 2015 and don't want to touch because it just works, but right now I do all my final reductions on the Carnegie computers to take advantage of Dan Kelson's latest but non-version-controlled improvements).
 
-Also note that there were upgrades made to the wavelength calibration happening in about 2017 or 2018. This helped remove a lot of the previous crashes with slits that are not 0.7 arcsec, plus it was more accurate overall. I believe the most recent CarPy version on the website has the 
+Also note that there were upgrades made to the wavelength calibration happening in about 2017 or 2018. This helped remove a lot of the previous crashes with slits that are not 0.7 arcsec, plus it was more accurate overall. The 2019 version (see above) is what I recommend.
+
+Sometimes orders are missing. In the `star<blue/red>.out1` file take a look for `What to keep...` and see which frame's orders are the bad ones (`False`).
+Usually it is because a frame doesn't have enough flux in those orders.
+Not sure what the problem is yet, but for now you can just drop those.
