@@ -81,6 +81,8 @@ Ql)."
 NOTE: keep the dome lights off (or at least constant) when you take the milky flats.
 Alex screwed this up once showing people the mirror and got milkys with too much intrinsic noise.
 
+NOTE: 2020-12-19 had to roughly double exposure times on quartz's
+
 ## Numbering
 I usually number each night starting 1000 for the first night, 2000 for the second night, etc.
 (For initial calibrations, e.g. milky's, I usually start numbering at 0000)
@@ -118,6 +120,7 @@ Set up (at least) four terminal windows.
   * `limexam` and `cimexam` let you set limits on the plot (useful for long exposures)
   * Many other things: `v` = vector cut, `r` or `.` = radial profile 
   * http://stsdas.stsci.edu/cgi-bin/gethelp.cgi?imexamine
+* implot xxxx: will do the cut across the middle for you
 * Editing fields in the MIKE GUI requires you to put the mouse in the edit field, type in the changes, and press enter
 
 ## Observing
@@ -142,8 +145,9 @@ Do this only by about 10-20% of the slit length, or reductions can get painful.
 - [ ] Add exposure time calculator
 
 ## Instrument Notes
-* 3-7-2019: since my last run in Nov 2018, they moved the quartz lamp to be a bit further away. I find calibration times need about 3-4x more exposure to achieve similar counts. The ThAr should not be affected.
-* 6-13-2019: the lamp apparently has been moved back, since we needed much shorter exposure times this run.
+* 2019-3-7: since my last run in Nov 2018, they moved the quartz lamp to be a bit further away. I find calibration times need about 3-4x more exposure to achieve similar counts. The ThAr should not be affected.
+* 2019-6-13: the lamp apparently has been moved back, since we needed much shorter exposure times this run.
+* 2020-12-19: there are problems with the ADC alignment between the two parts, which can cause you to lose as much as 90% of the light on the blue end. It will be fixed soon, but make sure to keep an eye out for this! You can see if there's a problem by looking at the object trace with respect to wavelength (which should be perfectly down the middle if the ADC is working well)
 
 # Reduction Instructions
 
