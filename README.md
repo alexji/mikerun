@@ -2,7 +2,7 @@
 Tools for MIKE observing runs
 
 ## Alex's preparation checklist
-* If you have not, read the [MIKE user manual](http://www.lco.cl/Members/magins/mike-kb/mike-user-manual)
+* If you have not, read the [MIKE user manual](http://www.lco.cl/?epkb_post_type_1=the-mike-magellan-inamori-kyocera-echelle-users-guide)
   * Note this has not really been updated for at least 5+ years, so some info is out of date.
 * make human target catalog
 * make iobs and/or jskycalc catalog
