@@ -134,6 +134,16 @@ Set up (at least) four terminal windows.
 You can and should check this (can do in twilight with a bright star; you can see where the slit is from the sky background), but moving an object down on the slit viewer makes the object trace move right on the blue CCD (as viewed on the MIKE GUI).
 Note also that the blue and red object locations are flipped on the CCDs (right on blue = left on red).
 Do this only by about 10-20% of the slit length, or reductions can get painful.
+* During long exposures, you should keep an eye on the slit cam and ask the TO to adjust the guiding every 15-20 min if it's needed. Because the image rotates, the star can drift a bit out of the slit.
+
+### ADC Comments
+* [ADC report](http://www.lco.cl/wp-content/uploads/2021/03/MIKE-ADC-report.pdf)
+* In general it is strongly recommended to use the ADC, especially if going to high airmass. This avoids having to futz with guiding low/high. At high airmass you can tell the images on the slit cam will be sharper.
+* There is a 5-10% throughput hit from using the ADC.
+* Internal calibrations (quartz, milky, thar) are not affected by the ADC, but external calibrations (fringe) are. So if you want fringe flats, take them in the mode you are observing with.
+* The ADC has had occasional catastrophic failures (Dec 2020), where the prisms don't rotate properly and you can lose near 100% of flux in the blue. These cases have so far been very clear by looking at the raw spectrum images as they read out: the bluer orders on the blue chip will disappear too rapidly. When this occurs, the loss depends on where you point, i.e. sometimes it helps and sometimes it hurts. So keep your eye out when using the ADC!
+* Shec has asked mountain operations to add an inspection procedure for the ADC every time, so hopefully this doesn't happen again.
+
 
 ## To-do list
 - [ ] Add RV standards catalogs/scripts
@@ -143,6 +153,7 @@ Do this only by about 10-20% of the slit length, or reductions can get painful.
 - [ ] Add something for observation planning
 - [ ] Add autosummary script
 - [ ] Add exposure time calculator
+
 
 ## Instrument Notes
 * 2019-3-7: since my last run in Nov 2018, they moved the quartz lamp to be a bit further away. I find calibration times need about 3-4x more exposure to achieve similar counts. The ThAr should not be affected.
