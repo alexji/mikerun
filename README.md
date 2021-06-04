@@ -45,6 +45,7 @@ And of course, make sure that your calibrations match your observations.
 * ThAr arcs (for wavelength calibration)
 * Fringe flats (dome screen flats for removing fringing at the red end. Use -fringekey <keyname>)
   * This requires a relatively recent carpy version to work
+  * You will definitely want this if you plan to do anything above ~8000A
 * Recommended to take at least one RV standard
 
 I usually take 20 quartz, 20 milkys the first afternoon, then 5-10 each afternoon after that.
@@ -55,13 +56,16 @@ Instead I just take a ton of afternoon milky flats.
 However for the very bluest orders (if you're pushing down to 3300-3500A), you will want these because you'll need like 100+ milky flats.
 You can estimate the flat S/N by sqrt(total counts) and see if it is "infinite" for your needs.
 
-Typical exposure times (TODO). Nonlinearity sets in around 50k counts, so the goal is to have a peak of ~40k.
+Nonlinearity sets in around 50k counts, so the goal is to have a peak of ~40k.
 (TODO more detail/checks) for 0.35" slit, a 10s arc seems needed to get enough counts for a good wavelength calibration (sometimes the reduction pipeline fails).
 However, I think only the first afternoon one needs to be taken like this to get an initial identification, and subsequent arcs could be shorter (5s). I have just started taking 5s arcs for everything, except maybe 3s for 1.0 slit.
+(Note: this all just varies a bit depending on how new the lamps are...)
 
 ### Calibration exposure time estimates
 Aim for 40k counts at peak in both blue and red. Make sure to check the exposure counts.
 
+2021 note: these exposure times are about 50% too low, just depends on what they've been doing with the lamps recently.
+ 
 | Slit| Bin | Read | Quartz B/R | Milky B/R | Fringe |
 | --- | --- | ---- | ---------- | --------- | ------ |
 | 0.7 | 2x2 | Slow | 3.5/1.5    | 12/10     | 40     |
@@ -77,11 +81,10 @@ NOTE from Josh:
 "Dave Osip says that if the variable lamp is only at 2.7V, then what it's
 adding to the flux of the Qh lamp is pretty minimal (and the same goes for
 Ql)."
+You only need 3-5 fringe frames at ~10k counts on the red peak.
 
 NOTE: keep the dome lights off (or at least constant) when you take the milky flats.
 Alex screwed this up once showing people the mirror and got milkys with too much intrinsic noise.
-
-NOTE: 2020-12-19 had to roughly double exposure times on quartz's
 
 ## Numbering
 I usually number each night starting 1000 for the first night, 2000 for the second night, etc.
@@ -143,7 +146,7 @@ Do this only by about 10-20% of the slit length, or reductions can get painful.
 * Internal calibrations (quartz, milky, thar) are not affected by the ADC, but external calibrations (fringe) are. So if you want fringe flats, take them in the mode you are observing with.
 * The ADC has had occasional catastrophic failures (Dec 2020), where the prisms don't rotate properly and you can lose near 100% of flux in the blue. These cases have so far been very clear by looking at the raw spectrum images as they read out: the bluer orders on the blue chip will disappear too rapidly. When this occurs, the loss depends on where you point, i.e. sometimes it helps and sometimes it hurts. So keep your eye out when using the ADC!
 * Shec has asked mountain operations to add an inspection procedure for the ADC every time, so hopefully this doesn't happen again.
-
+* 2021 May: the ADC was broken.
 
 ## To-do list
 - [ ] Add RV standards catalogs/scripts
@@ -159,14 +162,16 @@ Do this only by about 10-20% of the slit length, or reductions can get painful.
 * 2019-3-7: since my last run in Nov 2018, they moved the quartz lamp to be a bit further away. I find calibration times need about 3-4x more exposure to achieve similar counts. The ThAr should not be affected.
 * 2019-6-13: the lamp apparently has been moved back, since we needed much shorter exposure times this run.
 * 2020-12-19: there are problems with the ADC alignment between the two parts, which can cause you to lose as much as 90% of the light on the blue end. It will be fixed soon, but make sure to keep an eye out for this! You can see if there's a problem by looking at the object trace with respect to wavelength (which should be perfectly down the middle if the ADC is working well)
+ * 2020-May: the ADC was broken again. Looks like this will continue to vary.
 
 # Reduction Instructions
 
-Note: I recommend using this "new" version of CarPy that resolves many bugs:
+IMPORTANT: I recommend using this "new" version of CarPy that resolves many bugs:
 - Go to ftp://ftp.obs.carnegiescience.edu/pub/kelson 
 - Get `dist20190610.tgz`
 - In your CarPy directory (e.g. `/usr/local/CarPy/`), make a backup of the `dist` folder
-- Unzip the file into the CarPy Directory, it should make a new `dist folder
+- Unzip the file into the CarPy Directory, it should make a new `dist` folder 
+You can tell it's using the new one if your Makefiles have `cpd` as some of the commands.
 
 How to reduce data:
 - Put all your raw data in one directory. I will call it `raw_data` in these instructions, but replace it however you want.
@@ -190,12 +195,15 @@ How to reduce data:
   - As mentioned above, I usually make two `.db` files in two different directories, one for each chip. If you do that, `cd` into the relevant directory before you call `mikesetup`.
   - If you have fringe flats, make sure that the object name has `fringe` and add `-fringekey fringe`.
     - Some older versions of CarPy do not have the correct implementation of fringe flats. If your reduced data look weird, just skip the fringe flats and contact Dan Kelson later for an up-to-date version
+    - This adds a step to the red side reduction and skips those objects for the blue side reduction.
 - Run `make all` and things should work!
 
 ## How it works
 I will describe the stages of the reduction here in the future. In the meantime, you can see all the stages of the reduction by looking at the Makefile that is created by `mikesetup`.
 
 ## Advanced reduction Notes
+NOTE: most of these issues have been fixed in the 2019 CarPy version. So try that first.
+ 
 Make sure to inspect the wavelength calibration output.
 For instance, look at `lampblue/lampblue_lampXXXXfbspecshisto.ps`.
 If the residuals have obvious trends, this means the wavelength calibration is off.
