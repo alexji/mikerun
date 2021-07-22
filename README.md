@@ -203,6 +203,8 @@ I will describe the stages of the reduction here in the future. In the meantime,
 
 ## Advanced reduction Notes
 NOTE: most of these issues have been fixed in the 2019 CarPy version. So try that first.
+
+NOTE JULY 2021: The binary version compiled for M1 macs and CarPy in July 2021 had the CPDMap wavelength calibration (presumably updated for Intel as well). So you can just use the most recent version of CarPy now!
  
 Make sure to inspect the wavelength calibration output.
 For instance, look at `lampblue/lampblue_lampXXXXfbspecshisto.ps`.
