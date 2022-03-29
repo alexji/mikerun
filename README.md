@@ -142,7 +142,7 @@ Do this only by about 10-20% of the slit length, or reductions can get painful.
 ### ADC Comments
 * [ADC report](http://www.lco.cl/wp-content/uploads/2021/03/MIKE-ADC-report.pdf)
 * In general it is strongly recommended to use the ADC, especially if going to high airmass. This avoids having to futz with guiding low/high. At high airmass you can tell the images on the slit cam will be sharper.
-* There is a 5-10% throughput hit from using the ADC.
+* There is a 5-10% throughput hit from using the ADC (see the ADC report). Thus if all your targets are airmass < 1.4 or so, you should consider skipping the ADC. It's best to make one decision for your entire run to avoid reduction issues.
 * Internal calibrations (quartz, milky, thar) are not affected by the ADC, but external calibrations (fringe) are. So if you want fringe flats, take them in the mode you are observing with.
 * The ADC has had occasional catastrophic failures (Dec 2020), where the prisms don't rotate properly and you can lose near 100% of flux in the blue. These cases have so far been very clear by looking at the raw spectrum images as they read out: the bluer orders on the blue chip will disappear too rapidly. When this occurs, the loss depends on where you point, i.e. sometimes it helps and sometimes it hurts. So keep your eye out when using the ADC!
 * Shec has asked mountain operations to add an inspection procedure for the ADC every time, so hopefully this doesn't happen again.
