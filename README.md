@@ -1,7 +1,7 @@
 # mikerun
 Tools for MIKE observing runs
 
-Note: this has not been updated since ~2021, there are very many updated things after the move to remote observing and having support astronomers create new software that makes many tasks easier. It will be updated "soon"...
+Note: this has not been updated since ~2021, there are very many updated things after the move to remote observing and having support astronomers create new software that makes many tasks easier, as well as improvements to the data reduction pipeline. It will be updated "soon"...
 
 ## Alex's preparation checklist
 * If you have not, read the [MIKE user manual](http://www.lco.cl/?epkb_post_type_1=the-mike-magellan-inamori-kyocera-echelle-users-guide)
