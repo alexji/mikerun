@@ -92,8 +92,8 @@ I usually number each night starting 1000 for the first night, 2000 for the seco
 ## Alex's setup for quick reductions
 * make calibration frames ahead of time
 * scp raw data to my laptop (r,b)
-* mikedb -d raw_data (Carpy)
-* python splitdb.py (Anaconda), go into different 
+* mikedb -d raw_data (needs carpy)
+* python splitdb.py (python3 carpy works for this), go into different 
 * mikesetup -db redMIKE.db -red -all -fringekey fringe; make (targ_<objname>); same with blue. (Carpy)
   * Optional: for red side, take dome flats and do -fringekey fringe
 * run summary plot (code) on reduced data (Anaconda)
@@ -180,12 +180,13 @@ How to reduce data:
     - Anything with `thar` in the object name is assumed to be an arc.
     - Anything with `milky` in the object name is assumed to be a milky flat.
     - Anything with `quartz` in the object name is assumed to be a quartz flat.
+    - Anything with `fringe` in the object name is assumed to be a fringe flat (with the commands we do here).
   - If two or more frames have the same object name, CarPy will reduce the frames _together_ into one file. See [this paper](https://code.obs.carnegiescience.edu/Algorithms/ghlb/view) for details (or talk to Alex, it's a complicated paper). You can reduce frames individually by editing the `raw_dataMIKE.db` file so that each frame has a different name (e.g. for object `my-RRL`, where the velocities change between individual exposures, I would rename them `my-RRL-1` and `my-RRL-2`).
   - All the frames will be assumed to have the same slit and chip binning. If that's not the case, pick the files from one slit and delete the rest.
     - It is generally advised to make subdirectories for each setting
     - The script `split_db.py` here was made to do that automatically, you can play around with it or write your own.
     - It is generally advised to reduce the blue and red chips in separate directories, although you don't have to. You can separate that manually, or use `split_db.py`
-- Run `mikesetup -db raw_dataMIKE.db -blue -all` and `mikesetup -db raw_dataMIKE.db -red -all`
+- Run `mikesetup -db raw_dataMIKE.db -blue -all -fringekey fringe` and `mikesetup -db raw_dataMIKE.db -red -all -fringekey fringe`
   - This command creates a bunch of directories, symbolic links, and Makefiles.
   - As mentioned above, I usually make two `.db` files in two different directories, one for each chip. If you do that, `cd` into the relevant directory before you call `mikesetup`.
   - If you have fringe flats, make sure that the object name has `fringe` and add `-fringekey fringe`.
